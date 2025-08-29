@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Framax Media Portfolio</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #121212;
+            color: #FFFFFF;
+        }
+        .container {
+            max-width: 1280px;
+            margin: auto;
+            padding: 2rem;
+        }
+        .video-card {
+            background-color: #1C1C1C;
+            border-radius: 1rem;
+            overflow: hidden;
+            transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+        }
+        .video-card:hover {
+            transform: scale(1.03);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        }
+        .thumbnail-container {
+            position: relative;
+            padding-top: 56.25%; /* 16:9 Aspect Ratio */
+        }
+        .thumbnail-container img {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        .video-info {
+            padding: 1rem;
+        }
+        .video-title {
+            font-size: 1.125rem;
+            font-weight: 600;
+            line-height: 1.4;
+        }
+    </style>
+</head>
+<body class="youtube-like">
+
+    <!-- Niche Selection Page -->
+    <section id="niche-selection" class="min-h-screen flex flex-col items-center justify-center p-8 text-center">
+        <div class="bg-[#1C1C1C] p-8 md:p-12 rounded-2xl shadow-lg w-full max-w-2xl">
+            <h1 class="text-3xl md:text-5xl font-bold mb-6 text-[#FFD700]">Select a Niche</h1>
+            <p class="text-lg md:text-xl font-light mb-8 text-white">Choose a category to view our specialized portfolio.</p>
+            
+            <div class="grid grid-cols-2 sm:grid-cols-3 gap-6 mb-8">
+                <div class="flex items-center justify-center">
+                    <input type="radio" id="business" name="niche" value="business" class="hidden peer">
+                    <label for="business" class="inline-flex items-center justify-between w-full p-4 rounded-xl cursor-pointer bg-[#333] border-2 border-transparent peer-checked:border-[#FFD700] hover:border-[#FFD700] transition">
+                        <span class="text-white text-base md:text-lg font-semibold w-full">Business</span>
+                    </label>
+                </div>
+                <div class="flex items-center justify-center">
+                    <input type="radio" id="fitness" name="niche" value="fitness" class="hidden peer">
+                    <label for="fitness" class="inline-flex items-center justify-between w-full p-4 rounded-xl cursor-pointer bg-[#333] border-2 border-transparent peer-checked:border-[#FFD700] hover:border-[#FFD700] transition">
+                        <span class="text-white text-base md:text-lg font-semibold w-full">Fitness</span>
+                    </label>
+                </div>
+                <div class="flex items-center justify-center">
+                    <input type="radio" id="educational" name="niche" value="educational" class="hidden peer">
+                    <label for="educational" class="inline-flex items-center justify-between w-full p-4 rounded-xl cursor-pointer bg-[#333] border-2 border-transparent peer-checked:border-[#FFD700] hover:border-[#FFD700] transition">
+                        <span class="text-white text-base md:text-lg font-semibold w-full">Educational</span>
+                    </label>
+                </div>
+                <div class="flex items-center justify-center">
+                    <input type="radio" id="tech" name="niche" value="tech" class="hidden peer">
+                    <label for="tech" class="inline-flex items-center justify-between w-full p-4 rounded-xl cursor-pointer bg-[#333] border-2 border-transparent peer-checked:border-[#FFD700] hover:border-[#FFD700] transition">
+                        <span class="text-white text-base md:text-lg font-semibold w-full">Tech</span>
+                    </label>
+                </div>
+                <div class="flex items-center justify-center">
+                    <input type="radio" id="documentary" name="niche" value="documentary" class="hidden peer">
+                    <label for="documentary" class="inline-flex items-center justify-between w-full p-4 rounded-xl cursor-pointer bg-[#333] border-2 border-transparent peer-checked:border-[#FFD700] hover:border-[#FFD700] transition">
+                        <span class="text-white text-base md:text-lg font-semibold w-full">Documentary</span>
+                    </label>
+                </div>
+                <div class="flex items-center justify-center">
+                    <input type="radio" id="gaming" name="niche" value="gaming" class="hidden peer">
+                    <label for="gaming" class="inline-flex items-center justify-between w-full p-4 rounded-xl cursor-pointer bg-[#333] border-2 border-transparent peer-checked:border-[#FFD700] hover:border-[#FFD700] transition">
+                        <span class="text-white text-base md:text-lg font-semibold w-full">Gaming</span>
+                    </label>
+                </div>
+            </div>
+
+            <button id="submit-btn" class="inline-block py-4 px-8 bg-[#FFD700] text-[#121212] text-xl font-bold rounded-full transition transform hover:scale-105 hover:shadow-2xl hover:shadow-[#FFD700]/50">
+                Submit
+            </button>
+        </div>
+    </section>
+
+    <!-- Portfolio Page (Hidden by default) -->
+    <section id="portfolio-page" class="hidden py-8">
+        <div class="container flex flex-col items-start">
+            <button id="back-btn" class="py-2 px-4 rounded-full border border-white text-white mb-6 hover:bg-white hover:text-black transition flex items-center gap-2">
+                <i class="fas fa-arrow-left"></i>
+                Back
+            </button>
+            <h1 class="text-3xl md:text-5xl font-bold mb-8 text-[#FFD700]"></h1>
+            
+            <div id="video-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 w-full mb-12">
+                <!-- Video cards will be dynamically inserted here -->
+            </div>
+
+            <!-- New Contact Us Button -->
+            <div class="text-center w-full">
+                <a href="https://wa.me/916387930217" target="_blank" class="inline-block py-4 px-8 bg-[#FFD700] text-[#121212] text-xl font-bold rounded-full transition transform hover:scale-105 hover:shadow-2xl hover:shadow-[#FFD700]/50">
+                    Next: Contact Us
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        const data = {
+            business: [
+                { title: "Corporate Promo Reel 2024", thumbnail: "https://placehold.co/480x270/2E2E2E/FFFFFF?text=Business+Video+1" },
+                { title: "Startup Interview: A New Vision", thumbnail: "https://placehold.co/480x270/2E2E2E/FFFFFF?text=Business+Video+2" },
+                { title: "Annual Report Highlight", thumbnail: "https://placehold.co/480x270/2E2E2E/FFFFFF?text=Business+Video+3" }
+            ],
+            fitness: [
+                { title: "High-Intensity Workout Motivation", thumbnail: "https://placehold.co/480x270/2E2E2E/FFFFFF?text=Fitness+Video+1" },
+                { title: "Home Gym Transformation", thumbnail: "https://placehold.co/480x270/2E2E2E/FFFFFF?text=Fitness+Video+2" },
+                { title: "Athlete Training Montage", thumbnail: "https://placehold.co/480x270/2E2E2E/FFFFFF?text=Fitness+Video+3" }
+            ],
+            educational: [
+                { title: "Science Explained: Black Holes", thumbnail: "https://placehold.co/480x270/2E2E2E/FFFFFF?text=Educational+Video+1" },
+                { title: "History's Greatest Battles", thumbnail: "https://placehold.co/480x270/2E2E2E/FFFFFF?text=Educational+Video+2" },
+                { title: "Introduction to Quantum Physics", thumbnail: "https://placehold.co/480x270/2E2E2E/FFFFFF?text=Educational+Video+3" }
+            ],
+            tech: [
+                { title: "Next-Gen Smartphone Review", thumbnail: "https://placehold.co/480x270/2E2E2E/FFFFFF?text=Tech+Video+1" },
+                { title: "Building a Custom PC", thumbnail: "https://placehold.co/480x270/2E2E2E/FFFFFF?text=Tech+Video+2" },
+                { title: "AI in a Nutshell", thumbnail: "https://placehold.co/480x270/2E2E2E/FFFFFF?text=Tech+Video+3" }
+            ],
+            documentary: [
+                { title: "The Great Barrier Reef's Last Stand", thumbnail: "https://placehold.co/480x270/2E2E2E/FFFFFF?text=Documentary+Video+1" },
+                { title: "Urban Exploration in Tokyo", thumbnail: "https://placehold.co/480x270/2E2E2E/FFFFFF?text=Documentary+Video+2" },
+                { title: "Lost Cities of the Amazon", thumbnail: "https://placehold.co/480x270/2E2E2E/FFFFFF?text=Documentary+Video+3" }
+            ],
+            gaming: [
+                { title: "Epic Game Montage", thumbnail: "https://placehold.co/480x270/2E2E2E/FFFFFF?text=Gaming+Video+1" },
+                { title: "Pro Player Highlights", thumbnail: "https://placehold.co/480x270/2E2E2E/FFFFFF?text=Gaming+Video+2" },
+                { title: "Cinematic Gaming Story", thumbnail: "https://placehold.co/480x270/2E2E2E/FFFFFF?text=Gaming+Video+3" }
+            ]
+        };
+
+        const nicheSelection = document.getElementById('niche-selection');
+        const portfolioPage = document.getElementById('portfolio-page');
+        const submitBtn = document.getElementById('submit-btn');
+        const backBtn = document.getElementById('back-btn');
+        const videoGrid = document.getElementById('video-grid');
+        const pageTitle = portfolioPage.querySelector('h1');
+
+        function showPage(pageId) {
+            nicheSelection.classList.add('hidden');
+            portfolioPage.classList.add('hidden');
+            if (pageId === 'selection') {
+                nicheSelection.classList.remove('hidden');
+            } else if (pageId === 'portfolio') {
+                portfolioPage.classList.remove('hidden');
+            }
+        }
+
+        function renderPortfolio(niche) {
+            const portfolioItems = data[niche] || [];
+            videoGrid.innerHTML = '';
+            pageTitle.textContent = `${niche.charAt(0).toUpperCase() + niche.slice(1)} Portfolio`;
+
+            if (portfolioItems.length === 0) {
+                videoGrid.innerHTML = '<p class="text-center text-lg col-span-full text-gray-400">No portfolio items found for this niche.</p>';
+                return;
+            }
+
+            portfolioItems.forEach(item => {
+                const videoCard = `
+                    <div class="video-card">
+                        <div class="thumbnail-container">
+                            <img src="${item.thumbnail}" alt="Video Thumbnail">
+                        </div>
+                        <div class="video-info">
+                            <h3 class="video-title">${item.title}</h3>
+                        </div>
+                    </div>
+                `;
+                videoGrid.innerHTML += videoCard;
+            });
+        }
+
+        submitBtn.addEventListener('click', () => {
+            const selectedNiche = document.querySelector('input[name="niche"]:checked');
+            if (selectedNiche) {
+                renderPortfolio(selectedNiche.value);
+                showPage('portfolio');
+            } else {
+                // Display a custom message box instead of an alert
+                const messageBox = document.createElement('div');
+                messageBox.className = 'fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50';
+                messageBox.innerHTML = `
+                    <div class="bg-[#1C1C1C] text-white p-8 rounded-lg shadow-lg text-center">
+                        <p class="text-lg font-semibold mb-4">Please select a niche.</p>
+                        <button class="bg-[#FFD700] text-[#121212] font-bold py-2 px-4 rounded-full hover:bg-opacity-80 transition">OK</button>
+                    </div>
+                `;
+                document.body.appendChild(messageBox);
+                
+                messageBox.querySelector('button').addEventListener('click', () => {
+                    document.body.removeChild(messageBox);
+                });
+            }
+        });
+
+        backBtn.addEventListener('click', () => {
+            showPage('selection');
+        });
+
+    </script>
+</body>
+</html>
